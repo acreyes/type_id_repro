@@ -4,12 +4,12 @@
 // Mimics Parthenon's MetadataFlag - a simple non-template class
 // that will be used as a template parameter elsewhere
 class SimpleFlag {
- private:
+private:
   int value_;
 
- public:
-  explicit SimpleFlag(int v) : value_(v) {}
-  int value() const { return value_; }
+public:
+  explicit SimpleFlag(int v);
+  int value() const;
 };
 
-#endif  // SIMPLE_TYPE_HPP_
+#endif // SIMPLE_TYPE_HPP_
