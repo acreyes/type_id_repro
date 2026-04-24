@@ -21,8 +21,7 @@ add_library(store SHARED libstore.cpp)
 target_compile_options(store PRIVATE -fvisibility=default)
 target_include_directories(store PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# Library 2: Fetch library with HIDDEN visibility
-# Mimics Python extension (pyKamayan.so) built with nanobind
+# Library 2: Fetch library
 add_library(fetch SHARED libfetch.cpp)
 target_compile_options(fetch PRIVATE -fvisibility=hidden)
 target_include_directories(fetch PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

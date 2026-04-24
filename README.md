@@ -22,12 +22,7 @@ the `std::type_info` objects for the same type may not be unified by the dynamic
 mkdir build
 cd build
 
-# Build without the workaround (demonstrates the bug)
 cmake ..
-cmake --build .
-
-# Or build with the strcmp workaround
-cmake .. -DUSE_STRCMP_FIX=ON
 cmake --build .
 ```
 
@@ -38,7 +33,7 @@ cmake --build .
 ./test_typeinfo
 ```
 
-Expected output on macOS (and possibly Linux):
+Expected output with Apple Clang
 ```
 === C++ RTTI TypeInfo Reproducer ===
 Build mode: WITHOUT strcmp workaround (original buggy code)
@@ -70,12 +65,6 @@ Step 2: Calling fetch_value() from libfetch.so (hidden visibility)...
 
 === TEST PASSED ===
 ```
-
-### Run both tests automatically:
-```bash
-ctest -V
-```
-
 
 ## The Workaround
 

@@ -1,12 +1,14 @@
 #include "simple_params.hpp"
 #include "simple_type.hpp"
 
-// This library will be compiled with -fvisibility=hidden
-// Mimics Python extension fetching a MetadataFlag from Params
+#ifdef _WIN32
+#define EXPORT __declspec(dllexport)
+#elif defined(__GNUC__)
+#define EXPORT __attribute__((visibility("default")))
+#else
+#define EXPORT
+#endif
 
-SimpleFlag fetch_value(SimpleParams &params) {
-  // This instantiates SimpleParams::Get<SimpleFlag>() in this compilation unit
-  // The typeinfo for SimpleFlag will be generated here again
-  // BUG: With hidden visibility, this typeinfo won't match the one in libstore!
+EXPORT SimpleFlag fetch_value(SimpleParams &params) {
   return params.Get<SimpleFlag>("my_flag");
 }
